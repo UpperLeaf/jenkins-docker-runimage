@@ -27,8 +27,8 @@ pipeline {
       steps {
         dir('demo-project') {
           script {
-            app = docker.build('leafupper/demo-project:latest')
-            app.push()
+            app = docker.build('leafupper/demo-project')
+            app.push("latest")
           }
         }
       }
