@@ -25,8 +25,12 @@ pipeline {
 
     stage('build image') {
       steps {
-        app = docker.build('leafupper/demo-project:latest')
-        app.push()
+        dir('demo-project') {
+          script {
+            app = docker.build('leafupper/demo-project:latest')
+            app.push()
+          }
+        }
       }
     }
   }
