@@ -22,6 +22,13 @@ pipeline {
         }
       }
     }
+
+    stage('build image') {
+      steps {
+        app = docker.build('leafupper/demo-project:latest')
+        app.push()
+      }
+    }
   }
 
 }
