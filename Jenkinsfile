@@ -36,7 +36,13 @@ pipeline {
 
     stage('test image') {
       steps {
-        sh 'echo Test Image'
+        dir('demo-project') {
+          script {
+            app.withRun { c ->
+              sh 'curl localhost:8080'
+            }
+          }
+        }
       }
     }
 
