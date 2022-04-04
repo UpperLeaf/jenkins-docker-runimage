@@ -29,7 +29,7 @@ pipeline {
         dir('demo-project') {
           script {
             app = docker.build('leafupper/demo-project')
-            app.push('${BUILD_VERSION}')
+            app.push('leaf-${BUILD_VERSION}')
           }
         }
       }
