@@ -1,5 +1,5 @@
 pipeline {
-  agent docker
+  agent any
 
   environment {
     def GIT_URL = "https://github.com/UpperLeaf/jenkins-docker-runimage.git"
@@ -28,7 +28,6 @@ pipeline {
         dir('demo-project') {
           script {
             app = docker.build('leafupper/demo-project')
-            app.push("latest")
           }
         }
       }
