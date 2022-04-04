@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent docker
 
   environment {
     def GIT_URL = "https://github.com/UpperLeaf/jenkins-docker-runimage.git"
