@@ -34,20 +34,13 @@ pipeline {
       }
     }
 
-    stage('ECHO URL') {
-      steps {
-        sh 'echo ${JENKINS_URL}'
-        sh 'echo ${JOB_URL}'
-        sh 'echo ${BUILD_URL}'
-        sh 'echo ${PROJECT_URL}'
-      }
-    }
-
     stage('test image') {
       steps {
         dir('demo-project') {
           script {
             app.withRun('-p 8081:8080') { c ->
+              sh 'echo ${c.id}'
+              sh 'echo ${c.host}'
               sh KARATE_TEST_CURL
             }
           }
