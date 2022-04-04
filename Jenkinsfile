@@ -28,9 +28,7 @@ pipeline {
         dir('demo-project') {
           script {
             app = docker.build('leafupper/demo-project')
-            docker.withRegistry() {
-              app.push('latest')
-            }
+            app.push()
           }
         }
       }
