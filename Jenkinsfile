@@ -38,7 +38,7 @@ pipeline {
       steps {
         dir('demo-project') {
           script {
-            app.withRun('-p 8081:8080') { c ->
+            app.withRun("-p ${JENKINS_PORT}:8080") { c ->
               sh KARATE_TEST_CURL
             }
           }
