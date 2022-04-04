@@ -39,7 +39,7 @@ pipeline {
         dir('demo-project') {
           script {
             app.withRun('-p 8081:8080') { c ->
-              sh 'curl http://localhost:7070/features/run'
+              sh 'curl http://localhost:9090/features/run'
             }
           }
         }
