@@ -10,7 +10,7 @@ pipeline {
 
       steps {
         dir('demo-project') {
-          git branch : 'master', url : ${GIT_URL}
+          git branch : 'master', url : "${GIT_URL}"
         }
       }
     }
