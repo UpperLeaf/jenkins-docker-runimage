@@ -1,10 +1,6 @@
 pipeline {
   agent any
 
-  parameters {
-    text(name: 'KARATE_TEST_CURL', description: 'Karate 테스트 CURL')
-  }
-
   environment {
     def GIT_URL = "https://github.com/UpperLeaf/jenkins-docker-runimage.git"
     def BUILD_VERSION = sh(script: "echo `date +%Y%m%d%H%M%S`", returnStdout: true).trim()
