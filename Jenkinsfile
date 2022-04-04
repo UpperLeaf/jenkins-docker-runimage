@@ -4,7 +4,6 @@ pipeline {
   environment {
     def GIT_URL = "https://github.com/UpperLeaf/jenkins-docker-runimage.git"
     def BUILD_VERSION = sh(script: "echo `date +%Y%m%d%H%M%S`", returnStdout: true).trim()
-    def HOST = InetAddress.localHost.hostAddress
   }
 
   stages {
@@ -37,7 +36,7 @@ pipeline {
 
     stage('debug') {
       steps {
-        sh "echo ${HOST}"
+        sh "echo ${getHostIp()}"
         sh "echo ${TEST_PORT}"
       }
     }
@@ -64,4 +63,8 @@ pipeline {
       }
     }
   }
+}
+
+def getHostIp() {
+    return env.JENKINS_URL.split('/')[2].split(':')[0]
 }
