@@ -39,8 +39,7 @@ pipeline {
         dir('demo-project') {
           script {
             app.withRun('-p 8081:8080') { c ->
-              sh
-              '
+              sh '
                   curl -i -X POST \
                      -H "Content-Type:application/json" \
                      -d \
@@ -53,8 +52,7 @@ pipeline {
                           "URL" : "http://localhost:8081"
                         }
                       }
-                      `http://localhost:7070/features/run
-              '
+                      `http://localhost:7070/features/run'
             }
           }
         }
