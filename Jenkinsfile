@@ -38,6 +38,15 @@ pipeline {
       }
     }
 
+    stage('ECHO URL') {
+      steps {
+        sh 'echo ${env.JENKINS_URL}'
+        sh 'echo ${env.JOB_URL}'
+        sh 'echo ${env.BUILD_URL}'
+        sh 'echo ${env.PROJECT_URL}'
+      }
+    }
+
     stage('test image') {
       steps {
         dir('demo-project') {
