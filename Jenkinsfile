@@ -4,7 +4,7 @@ pipeline {
   environment {
     def GIT_URL = "https://github.com/UpperLeaf/jenkins-docker-runimage.git"
     def BUILD_VERSION = sh(script: "echo `date +%Y%m%d%H%M%S`", returnStdout: true).trim()
-    def HOST = sh(script: 'echo ${BUILD_URL/https:\\/\\/} | cut -d "/" -f1', returnStdout: true).trim()
+    def HOST = sh(script: "echo ${BUILD_URL/https:\\/\\/} | cut -d '/' -f1", returnStdout: true).trim()
   }
 
   stages {
@@ -38,7 +38,7 @@ pipeline {
     stage('debug') {
       steps {
         sh "echo ${HOST}"
-        sh "echo ${JENKINS_PORT}"
+        sh "echo ${TEST_PORT}"
       }
     }
 
@@ -46,7 +46,7 @@ pipeline {
       steps {
         dir('demo-project') {
           script {
-            app.withRun("-p ${JENKINS_PORT}:8080") { c ->
+            app.withRun("-p ${TEST_PORT}:8080") { c ->
               sh KARATE_TEST_CURL
             }
           }
