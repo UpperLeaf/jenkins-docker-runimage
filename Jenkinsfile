@@ -28,6 +28,10 @@ pipeline {
         dir('demo-project') {
           script {
             app = docker.build('leafupper/demo-project')
+
+            docker.withRegistry('https://hub.docker.com') {
+              app.push('latest')
+            }
           }
         }
       }
