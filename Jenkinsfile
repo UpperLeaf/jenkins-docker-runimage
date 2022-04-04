@@ -40,7 +40,8 @@ pipeline {
           script {
             app.withRun('-p 8081:8080') { c ->
               sh """
-              curl -X POST \
+              curl -i -X POST \
+              -H "Content-Type:application/json" \
               -d '{
                 "filePath" : [
                   "app/feature/test/test.feature"
