@@ -4,6 +4,18 @@ pipeline {
   environment {
     def GIT_URL = "https://github.com/UpperLeaf/jenkins-docker-runimage.git"
     def BUILD_VERSION = sh(script: "echo `date +%Y%m%d%H%M%S`", returnStdout: true).trim()
+    def KARATE_TEST_CURL = """
+              curl -i -X POST \
+              -H "Content-Type:application/json" \
+              -d '{
+                "filePath" : [
+                  "app/feature/test/test.feature"
+                ],
+                "params": {
+                  "URL" : "http://localhost:7070"
+                }
+              }' http://localhost:9090/features/run
+    """
   }
 
   stages {
@@ -39,18 +51,7 @@ pipeline {
         dir('demo-project') {
           script {
             app.withRun('-p 8081:8080') { c ->
-              sh """
-              curl -i -X POST \
-              -H "Content-Type:application/json" \
-              -d '{
-                "filePath" : [
-                  "app/feature/test/test.feature"
-                ],
-                "params": {
-                  "URL" : "http://localhost:7070"
-                }
-              }' http://localhost:9090/features/run
-              """
+              sh KARATE_TEST_CURL
             }
           }
         }
