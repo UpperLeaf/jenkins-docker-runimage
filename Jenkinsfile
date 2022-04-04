@@ -39,8 +39,13 @@ pipeline {
         dir('demo-project') {
           script {
             app.withRun('-p 8081:8080') { c ->
-              sh 'echo hostIP ${hostIp(c)}'
+              sh "echo hostIP : ${hostIp(c)}"
               sh KARATE_TEST_CURL
+
+              def hostIp(container) {
+                sh "docker inspect -f {{.Node.Ip}} ${container.id} > hostIp"
+                readFile('hostIp').trim()
+              }
             }
           }
         }
