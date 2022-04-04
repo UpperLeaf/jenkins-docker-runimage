@@ -4,6 +4,7 @@ pipeline {
   environment {
     def GIT_URL = "https://github.com/UpperLeaf/jenkins-docker-runimage.git"
     def BUILD_VERSION = sh(script: "echo `date +%Y%m%d%H%M%S`", returnStdout: true).trim()
+    def HOST = getHostIp()
   }
 
   stages {
