@@ -40,10 +40,10 @@ pipeline {
 
     stage('ECHO URL') {
       steps {
-        sh 'echo ${env.JENKINS_URL}'
-        sh 'echo ${env.JOB_URL}'
-        sh 'echo ${env.BUILD_URL}'
-        sh 'echo ${env.PROJECT_URL}'
+        sh 'echo ${JENKINS_URL}'
+        sh 'echo ${JOB_URL}'
+        sh 'echo ${BUILD_URL}'
+        sh 'echo ${PROJECT_URL}'
       }
     }
 
