@@ -3,6 +3,7 @@ pipeline {
 
   environment {
     def GIT_URL = "https://github.com/UpperLeaf/jenkins-docker-runimage.git"
+    def BUILD_VERSION = sh(script: "echo `date +%Y%m%d%H%M%S`", returnStdout: true).trim()
   }
 
   stages {
@@ -28,7 +29,7 @@ pipeline {
         dir('demo-project') {
           script {
             app = docker.build('leafupper/demo-project')
-            app.push()
+            app.push('${BUILD_VERSION}')
           }
         }
       }
