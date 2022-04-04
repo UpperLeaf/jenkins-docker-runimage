@@ -4,6 +4,7 @@ pipeline {
   environment {
     def GIT_URL = "https://github.com/UpperLeaf/jenkins-docker-runimage.git"
     def BUILD_VERSION = sh(script: "echo `date +%Y%m%d%H%M%S`", returnStdout: true).trim()
+    def HOST = sh(script: 'echo ${BUILD_URL/https:\\/\\/} | cut -d "/" -f1', returnStdout: true).trim()
   }
 
   stages {
@@ -31,6 +32,13 @@ pipeline {
             app = docker.build('leafupper/demo-project')
           }
         }
+      }
+    }
+
+    stage('debug') {
+      steps {
+        sh "echo ${HOST}"
+        sh "echo ${JENKINS_PORT}"
       }
     }
 
