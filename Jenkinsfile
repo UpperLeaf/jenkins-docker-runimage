@@ -36,14 +36,16 @@ pipeline {
 
     stage('test image') {
       steps {
-
+        sh 'echo Test Image'
       }
     }
 
     stage('publish image') {
       steps {
         dir('demo-project') {
-           app.push("leaf-${BUILD_VERSION}")
+          script {
+            app.push("leaf-${BUILD_VERSION}")
+          }
         }
       }
     }
