@@ -2,8 +2,7 @@ pipeline {
   agent any
 
   environment {
-
-    def GIT_URL = git@github.com/UpperLeaf/jenkins-docker-runimage.git
+    def GIT_URL = "git@github.com/UpperLeaf/jenkins-docker-runimage.git"
   }
 
   stages {
