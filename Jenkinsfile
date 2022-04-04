@@ -39,7 +39,7 @@ pipeline {
         dir('demo-project') {
           script {
             app.withRun('-p 8081:8080') { c ->
-              sh 'docker logs ${c.id}'
+              sh 'echo hostIP ${hostIp(c)}'
               sh KARATE_TEST_CURL
             }
           }
